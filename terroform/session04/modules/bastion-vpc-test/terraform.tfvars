@@ -1,0 +1,15 @@
+aws_region    = "us-east-1"
+ami           = "ami-0eb5c571bf15422ac"
+vpc_id        = "vpc-096ecec5c2ac01072"
+instance_type = "t2.micro"
+key_name      = "s4"
+subnet_id     = "subnet-0a6afb3c2d3e68594"
+common_tags = {
+  "AssetID"       = "2560"
+  "AssetName"     = "Insfrastructure"
+  "Teams"         = "DEL"
+  "Environment"   = "tia"
+  "Project"       = "alpha"
+  "CreateBy"      = "Terraform"
+  "cloudProvider" = "aws"
+}
