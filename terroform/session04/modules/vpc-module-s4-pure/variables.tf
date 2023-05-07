@@ -41,3 +41,9 @@ variable "availability_zone" {
     "us-east-1b",
   ]
 }
+
+variable "cluster_name" {
+  type    = string
+  default = "2526-dev-alpha"
+}
+
