@@ -1,0 +1,1 @@
+https://antonputra.com/amazon/create-alb-terraform/#create-aws-alb-with-ec2-backend
