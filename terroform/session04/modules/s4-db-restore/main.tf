@@ -22,6 +22,10 @@ resource "aws_db_instance" "postgres" {
   vpc_security_group_ids = [aws_security_group.postgres.id]
   db_subnet_group_name   = aws_db_subnet_group.postgres.name
 
+  # This is to restore from snapshot
+  snapshot_identifier = data.aws_db_snapshot.example_snapshot.id
+
+
   tags = merge(var.common_tags, {
     Name = format("%s-%s-%s-artifactory-db", var.common_tags["AssetID"], var.common_tags["Environment"], var.common_tags["Project"])
     },

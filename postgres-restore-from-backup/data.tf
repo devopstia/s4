@@ -34,3 +34,10 @@ data "aws_secretsmanager_secret" "rds_username" {
 data "aws_secretsmanager_secret_version" "rds_username" {
   secret_id = data.aws_secretsmanager_secret.rds_username.id
 }
+
+## This is to restore from snapshot
+data "aws_db_snapshot" "example_snapshot" {
+  # db_snapshot_identifier = format("%sArtifactorySnapshot", var.common_tags["Project"])
+  db_snapshot_identifier = "alphaartifactorysnapshot"
+}
+
