@@ -16,10 +16,19 @@ terraform {
   }
 }
 
-terraform {
-  cloud {
-    organization = "S4-ORG"
+# terraform {
+#   cloud {
+#     organization = "S4-ORG"
 
+#     workspaces {
+#       name = "vpc"
+#     }
+#   }
+# }
+
+terraform {
+  backend "remote" {
+    organization = "S4-ORG"
     workspaces {
       name = "vpc"
     }
