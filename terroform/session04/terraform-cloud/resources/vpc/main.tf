@@ -13,6 +13,15 @@ terraform {
   }
 }
 
+terraform {
+  backend "remote" {
+    organization = "S4-ORG"
+    workspaces {
+      name = "vpc"
+    }
+  }
+}
+
 locals {
   vpc_cidr_block = "10.0.0.0/16"
   aws_region     = "us-east-1"
