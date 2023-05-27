@@ -52,7 +52,7 @@ locals {
 }
 
 module "vpc" {
-  source                = "../../modules/vpc"
+  source                = "./vpc"
   AWS_ACCESS_KEY_ID     = var.AWS_ACCESS_KEY_ID
   AWS_SECRET_ACCESS_KEY = var.AWS_SECRET_ACCESS_KEY
   vpc_cidr_block        = local.vpc_cidr_block
