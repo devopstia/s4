@@ -20,10 +20,10 @@ spec:
         image: leonardtia/tia:microservices
         ports:
         - containerPort: 80
-        resources:
-          requests:
-            cpu: "200m"       
-            memory: "200Mi"            
+        # resources:
+        #   requests:
+        #     cpu: "200m"       
+        #     memory: "200Mi"            
 ---
 apiVersion: v1
 kind: Service

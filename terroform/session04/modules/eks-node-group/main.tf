@@ -1,5 +1,5 @@
 resource "aws_iam_role" "nodes_general" {
-  name               = "eks-node-group-general"
+  name               = format("%s-%s-%s-node-group-role", var.common_tags["AssetID"], var.common_tags["Environment"], var.common_tags["Project"])
   assume_role_policy = <<POLICY
 {
   "Version": "2012-10-17",
@@ -34,7 +34,7 @@ resource "aws_iam_role_policy_attachment" "amazon_ec2_container_registry_read_on
 resource "aws_eks_node_group" "nodes_general" {
   cluster_name = format("%s-%s-%s", var.common_tags["AssetID"], var.common_tags["Environment"], var.common_tags["Project"])
 
-  node_group_name = "nodes-general"
+  node_group_name = format("%s-%s-%s-node-group", var.common_tags["AssetID"], var.common_tags["Environment"], var.common_tags["Project"])
   node_role_arn   = aws_iam_role.nodes_general.arn
   subnet_ids = [
     data.aws_subnet.private01.id,
@@ -42,23 +42,23 @@ resource "aws_eks_node_group" "nodes_general" {
   ]
 
   scaling_config {
-    desired_size = 1
-    min_size     = 1
-    max_size     = 5
+    desired_size = var.desired_size
+    min_size     = var.min_size
+    max_size     = var.max_size
   }
 
   remote_access {
-    ec2_ssh_key = "terraform"
+    ec2_ssh_key = var.ec2_ssh_key
   }
 
-  ami_type             = "AL2_x86_64"
-  capacity_type        = "ON_DEMAND"
-  disk_size            = 20
-  force_update_version = false
-  instance_types       = ["t2.micro"]
+  ami_type             = var.ami_type
+  capacity_type        = var.capacity_type
+  disk_size            = var.disk_size
+  force_update_version = var.force_update_version
+  instance_types       = [var.instance_types[0]]
 
   labels = {
-    alpha = "guru"
+    alpha = var.label_name
   }
 
   # taints = {
@@ -69,7 +69,7 @@ resource "aws_eks_node_group" "nodes_general" {
   #   }
   # }
 
-  version = "1.24"
+  version = var.eks_version
 
   depends_on = [
     aws_iam_role_policy_attachment.amazon_eks_worker_node_policy_general,

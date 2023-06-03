@@ -19,3 +19,6 @@ data "aws_subnet" "public02" {
   }
 }
 
+# resource "aws_eks_cluster" "example" {
+#   name = "2526-dev-alpha"
+# }

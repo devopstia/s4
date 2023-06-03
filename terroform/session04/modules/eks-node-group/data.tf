@@ -18,7 +18,3 @@ data "aws_subnet" "private02" {
     values = ["2560-dev-alpha-private-subnet-2"]
   }
 }
-
-# data "aws_eks_cluster" "my_eks_cluster" {
-#   name = "2526-dev-alpha"
-# }
