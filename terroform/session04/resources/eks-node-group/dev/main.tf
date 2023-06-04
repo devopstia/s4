@@ -35,16 +35,16 @@ locals {
     "cloudProvider" = "aws"
   }
 
-  desired_size = 2
-  min_size     = 2
-  max_size     = 5
+  desired_size = 1
+  min_size     = 1
+  max_size     = 10
 
   ec2_ssh_key          = "terraform"
   ami_type             = "AL2_x86_64"
   capacity_type        = "ON_DEMAND"
   disk_size            = 20
   force_update_version = false
-  instance_types       = ["t2.micro", "t2.medium"]
+  instance_types       = ["t2.medium", "t2.micro"]
   label_name           = "dev"
   eks_version          = "1.24"
 }
