@@ -1,9 +1,9 @@
 # Resource: Helm Release 
-resource "helm_release" "external_dns" {
+resource "helm_release" "external_dns_tia" {
   depends_on = [aws_iam_role.external-dns]
-  name       = var.external-dns-ns
+  name       = "tia"
 
-  repository = "https://kubernetes-sigs.github.io/external-dns/"
+  repository = "https://charts.bitnami.com/bitnami"
   chart      = "external-dns"
 
   namespace = var.external-dns-ns

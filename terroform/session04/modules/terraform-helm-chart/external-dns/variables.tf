@@ -1,7 +1,7 @@
 variable "common_tags" {
   type = map(any)
   default = {
-    "AssetID"       = "2560"
+    "AssetID"       = "2526"
     "AssetName"     = "Insfrastructure"
     "Teams"         = "DEL"
     "Environment"   = "dev"
@@ -23,5 +23,5 @@ variable "external-dns-sa" {
 
 variable "external-dns-ns" {
   type    = string
-  default = "external-dns"
+  default = "metrics-server"
 }

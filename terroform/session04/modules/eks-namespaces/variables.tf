@@ -1,3 +1,7 @@
+variable "name_spaces" {
+  type = list(string)
+}
+
 variable "common_tags" {
   type = map(any)
   default = {
@@ -14,14 +18,4 @@ variable "common_tags" {
 variable "aws_region" {
   type    = string
   default = "us-east-1"
-}
-
-variable "aws-load-balancer-controller-sa" {
-  type    = string
-  default = "aws-load-balancer-controller-sa"
-}
-
-variable "aws-load-balancer-controller-ns" {
-  type    = string
-  default = "kube-system"
 }
