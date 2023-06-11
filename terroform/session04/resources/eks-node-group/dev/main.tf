@@ -44,9 +44,9 @@ locals {
   capacity_type        = "ON_DEMAND"
   disk_size            = 20
   force_update_version = false
-  instance_types       = ["t2.medium", "t2.micro"]
+  instance_types       = ["t2.micro", "t2.micro", "t2.medium"]
   label_name           = "dev"
-  eks_version          = "1.24"
+  eks_version          = "1.22"
 }
 
 module "vpc" {

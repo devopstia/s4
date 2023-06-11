@@ -23,5 +23,5 @@ variable "external-dns-sa" {
 
 variable "external-dns-ns" {
   type    = string
-  default = "metrics-server"
+  default = "external-dns"
 }
