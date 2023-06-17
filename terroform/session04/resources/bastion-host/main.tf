@@ -26,7 +26,7 @@ locals {
   aws_region    = "us-east-1"
   ami           = "ami-0eb5c571bf15422ac"
   instance_type = "t2.micro"
-  key_name      = "s4"
+  key_name      = "tia-mac-key"
   common_tags = {
     "AssetID"       = "2560"
     "AssetName"     = "Insfrastructure"

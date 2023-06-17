@@ -24,7 +24,7 @@ We have 5 steps:
 
 ### Step 02: Patch kubeproxy
 - [Check the image version for each Amazon EKS supported cluster version](https://docs.aws.amazon.com/eks/latest/userguide/managing-kube-proxy.html)
-- Make sure to match version listed in chart on the AWS upgrade doc, example below is from version 1.19 to version 1.20
+- Make sure to match version listed in chart on the AWS upgrade doc, example below is from version 1.23 to version 1.24
     - Verify
     ```sh
     kubectl get daemonset kube-proxy \
@@ -35,9 +35,9 @@ We have 5 steps:
     ```sh
     602401143452.dkr.ecr.us-east-1.amazonaws.com/eks/kube-proxy:v1.19.6-eksbuild.2
     ```
-    - Update , make sure to set the region correctly. This will change the kube-proxy image from 1.19 to 1.20
+    - Update , make sure to set the region correctly. This will change the kube-proxy image from 1.23 to 1.24
     ```sh
-    kubectl set image daemonset.apps/kube-proxy -n kube-system kube-proxy=602401143452.dkr.ecr.us-east-1.amazonaws.com/eks/kube-proxy:v1.20.4-eksbuild.2
+    kubectl set image daemonset.apps/kube-proxy -n kube-system kube-proxy=602401143452.dkr.ecr.us-east-1.amazonaws.com/eks/kube-proxy:v1.24.10-minimal-eksbuild.1
     ```
     - Verify if the kube-proxy pods are running in kube-system ns
     ```
@@ -64,7 +64,7 @@ We have 5 steps:
     coredns=602401143452.dkr.ecr.[region_name].amazonaws.com/eks/coredns:v1.8.3-eksbuild.1
     
     kubectl set image --namespace kube-system deployment.apps/coredns \
-    coredns=602401143452.dkr.ecr.us-east-1.amazonaws.com/eks/coredns:v1.8.3-eksbuild.1
+    coredns=602401143452.dkr.ecr.us-east-1.amazonaws.com/eks/coredns:v1.9.3-eksbuild.3
     ```
     - Edit the cluster role and add the below content at the end if it does not exist
     ```sh
@@ -137,8 +137,7 @@ sudo apt install -y jq
 
 1. Check node with labels
 ```sh
-kubectl get no -l deployment.nodegroup=blue
-kubectl get no -l deployment.nodegroup=green
+kubectl get no -l deployment_nodegroup=blue_green
 ```
 3. Check if node are tainted
 ```SH
@@ -168,10 +167,13 @@ kubectl taint nodes ip-192-168-92-254.ec2.internal gpu=true:NoSchedule-
 
 4. Drain the all nodes
 ```sh
-kubectl drain [NODE_NAME] --ignore-daemonsets=false --force  --delete-local-data
+kubectl drain [NODE_NAME] --ignore-daemonsets=true --force  --delete-local-data
 
-kubectl drain ip-192-168-92-254.ec2.internal --ignore-daemonsets=false --force  --delete-local-data
-kubectl drain ip-192-168-62-62.ec2.internal --ignore-daemonsets=false --force  --delete-local-data
+kubectl drain ip-10-0-4-77.ec2.internal --ignore-daemonsets=true --force --delete-emptydir-data
+kubectl drain ip-10-0-3-108.ec2.internal --ignore-daemonsets=true --force --delete-emptydir-data
 ```
+## Check all pods running on the node
+kubectl get pods --all-namespaces -o wide --field-selector spec.nodeName=ip-10-0-3-241.ec2.internal
+kubectl get pods --all-namespaces -o wide --field-selector spec.nodeName=ip-10-0-4-56.ec2.internal
 
 5. Shutdown the old node group through terraform

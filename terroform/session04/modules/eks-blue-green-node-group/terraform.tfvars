@@ -10,18 +10,18 @@ common_tags = {
   "cloudProvider" = "aws"
 }
 
-eks_version  = "1.22"
-node_min     = "1"
-desired_node = "1"
+eks_version  = "1.24"
+node_min     = "2"
+desired_node = "2"
 node_max     = "6"
 
 blue_node_color  = "blue"
 green_node_color = "green"
 
 blue  = false
-green = false
+green = true
 
-ec2_ssh_key               = "terraform"
+ec2_ssh_key               = "tia-mac-key"
 deployment_nodegroup      = "blue_green"
 capacity_type             = "ON_DEMAND"
 ami_type                  = "AL2_x86_64"
