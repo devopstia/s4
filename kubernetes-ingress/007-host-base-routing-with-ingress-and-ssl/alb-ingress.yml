@@ -20,11 +20,11 @@ metadata:
     alb.ingress.kubernetes.io/unhealthy-threshold-count: '2'
     # SSH settings
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":443}, {"HTTP":80}]'
-    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:788210522308:certificate/c3eebb6d-52d1-47d2-88f9-032c8fa3652a
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:788210522308:certificate/be2817a0-9d5a-497a-bb74-deeddfcead5c
     # SSL Redirect Setting (http to https) all http will be redirected to https
     alb.ingress.kubernetes.io/ssl-redirect: '443'
     # External dns settings
-    external-dns.alpha.kubernetes.io/hostname: articles.devopseasylearning.net, dev.devopseasylearning.net
+    external-dns.alpha.kubernetes.io/hostname: articles.devopseasylearning.net, app.devopseasylearning.net
 spec:
   defaultBackend:
     service:

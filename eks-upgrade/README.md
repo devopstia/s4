@@ -167,13 +167,13 @@ kubectl taint nodes ip-192-168-92-254.ec2.internal gpu=true:NoSchedule-
 
 4. Drain the all nodes
 ```sh
-kubectl drain [NODE_NAME] --ignore-daemonsets=true --force  --delete-local-data
+kubectl drain [NODE_NAME] --ignore-daemonsets=true --force  --force --delete-emptydir-data
 
 kubectl drain ip-10-0-4-77.ec2.internal --ignore-daemonsets=true --force --delete-emptydir-data
 kubectl drain ip-10-0-3-108.ec2.internal --ignore-daemonsets=true --force --delete-emptydir-data
 ```
-## Check all pods running on the node
+5. Check all pods running on the node
 kubectl get pods --all-namespaces -o wide --field-selector spec.nodeName=ip-10-0-3-241.ec2.internal
 kubectl get pods --all-namespaces -o wide --field-selector spec.nodeName=ip-10-0-4-56.ec2.internal
 
-5. Shutdown the old node group through terraform
+6. Shutdown the old node group through terraform

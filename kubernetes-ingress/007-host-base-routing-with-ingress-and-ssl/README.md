@@ -7,6 +7,8 @@ dev.devopseasylearning.net/
 
 https://articles.devopseasylearning.net/
 
+https://app.devopseasylearning.net/
+
 https://covid19.devopseasylearning.net/
 
 https://creative.devopseasylearning.net/

@@ -14,6 +14,16 @@ resource "helm_release" "external_dns" {
   }
 
   set {
+    name  = "image.tag"
+    value = "v0.7.6"
+  }
+
+  set {
+    name  = "requestTimeout"
+    value = "60s"
+  }
+
+  set {
     name  = "serviceAccount.create"
     value = "true"
   }

@@ -1,0 +1,40 @@
+fullnameOverride: "external-dns"
+
+image:
+  registry: docker.io
+  repository: bitnami/external-dns
+  tag: 0.13.4-debian-11-r19
+  pullPolicy: IfNotPresent
+
+updateStrategy: {}
+provider: aws
+region: "us-east-1"
+
+domainFilters: []
+excludeDomains: []
+replicaCount: 1
+
+# "upsert-only", External DNS will only perform upsert operations, meaning it will add or update DNS records when necessary but will not delete them when the corresponding resources are removed.
+policy: sync
+
+nodeSelector: 
+  deployment_nodegroup: blue_green
+
+serviceAccount:
+  create: true
+  name: ""
+  annotations: {}
+
+resources:
+  ## Example:
+  ## limits:
+  ##    cpu: 50m
+  ##    memory: 50Mi
+  ##
+  limits: {}
+  ## Examples:
+  ## requests:
+  ##    cpu: 10m
+  ##    memory: 50Mi
+  ##
+  requests: {}
