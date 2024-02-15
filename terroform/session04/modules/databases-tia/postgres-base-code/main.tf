@@ -62,3 +62,13 @@ resource "aws_db_parameter_group" "postgres" {
   name   = "default-postgres12"
   family = "postgres13"
 }
+
+resource "aws_route53_record" "example" {
+  depends_on = [aws_db_instance.postgres]
+  zone_id    = "Z09063052B43KCQ7FSGHY"
+  name       = "artifactory"
+  type       = "CNAME"
+  ttl        = "30"
+  #   records = [aws_db_instance.alpha-db.endpoint]
+  records = [split(":", aws_db_instance.postgres.endpoint)[0]]
+}
